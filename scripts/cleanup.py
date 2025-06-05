@@ -73,31 +73,38 @@ for item in items:
 # Webhook message
 if deleted_count > 0:
     summary = f'Successfully deleted {deleted_count} item(s)'
-    folders = [item.split(':', 1)[1] for item in deleted_list if item.startswith('folder:')]
-    files = [item.split(':', 1)[1] for item in deleted_list if item.startswith('file:')]
 
     embed = {
         "title": "Bunny CDN Cleanup Report",
         "description": summary,
-        "color": 3066993,
-        "fields": [],
-        "footer": {"text": "Bunny CDN Cleanup"}
+        "color": 3066993,  # Green
+        "fields": [
+            {
+                "name": "Total Deleted",
+                "value": str(deleted_count),
+                "inline": False
+            }
+        ],
+        "footer": {
+            "text": "Bunny CDN Cleanup"
+        }
     }
-
-    if folders:
-        embed["fields"].append({"name": "Deleted Folders", "value": ", ".join(folders), "inline": False})
-    if files:
-        embed["fields"].append({"name": "Deleted Files", "value": ", ".join(files), "inline": False})
-
-    embed["fields"].append({"name": "Total Deleted", "value": str(deleted_count), "inline": True})
 else:
-    summary = 'No items older than 30 days were found.'
+    summary = 'No items older than 15 days were found.'
     embed = {
         "title": "Bunny CDN Cleanup Report",
         "description": summary,
-        "color": 16776960,
-        "fields": [{"name": "Action Taken", "value": "No folders or files were deleted.", "inline": False}],
-        "footer": {"text": "Bunny CDN Cleanup"}
+        "color": 16776960,  # Yellow
+        "fields": [
+            {
+                "name": "Action Taken",
+                "value": "No folders or files were deleted.",
+                "inline": False
+            }
+        ],
+        "footer": {
+            "text": "Bunny CDN Cleanup"
+        }
     }
 
 print('\n' + summary)
