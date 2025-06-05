@@ -1,4 +1,4 @@
-name: Delete Old Bunny Storage
+name: Delete Bunny Storage
 
 on:
   schedule:
