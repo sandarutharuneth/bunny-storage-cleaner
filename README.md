@@ -18,7 +18,13 @@ DISCORD_WEBHOOK_URL=Discord Webhook URL To Get Notified On Each Run
 ```py
 cutoff = datetime.now(timezone.utc) - timedelta(days=30) # Default is 30 days
 ```
-4) (Optional) Set Daily Run Time ( in `.github/workflows/delete_bunny_storage.yml` Line: `5` )
+4) Remove the comments in ( in `.github/workflows/delete_bunny_storage.yml` Line: `4 and 5`
+```sh
+#  schedule:
+#    - cron: '0 0 * * *'
+```
+   
+5) (Optional) Set Daily Run Time ( in `.github/workflows/delete_bunny_storage.yml` Line: `5` )
 - Default is set to run at `00:00 UTC`
 
 # Run
